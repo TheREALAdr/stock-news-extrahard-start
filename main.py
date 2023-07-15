@@ -40,8 +40,9 @@ closing_price_difference = last_day_closing_price - second_last_day_closing_pric
 closing_price_comparison = abs(closing_price_difference)
 closing_price_comparison_percentage = format(closing_price_comparison / second_last_day_closing_price * 100, ".2f")
 
-negative_comparison = 0.99 * second_last_day_closing_price
-positive_comparison = 1.01 * second_last_day_closing_price
+## THESE VARIABLES CONTROL THE PERCENTAGE THE CODE CHECKS FOR!
+negative_comparison = 0.98 * second_last_day_closing_price
+positive_comparison = 1.02 * second_last_day_closing_price
 
 # ------------------- GETTING NEWS WITH NEWS API ------------------- #
 
