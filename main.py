@@ -13,6 +13,8 @@ test_NEWS_API_KEY = os.environ.get("test_NEWS_API_KEY")
 test_TWILIO_PHONE_NUMBER = os.environ.get("test_TWILIO_PHONE_NUMBER")
 test_TWILIO_ACCOUNT_SID = os.environ.get("test_TWILIO_ACCOUNT_SID")
 test_TWILIO_AUTH_TOKEN = os.environ.get("test_TWILIO_AUTH_TOKEN")
+test_USER_PHONE_NUMBER = os.environ.get("test_USER_PHONE_NUMBER")
+
 
 # ------------------------ ALPHA-VANTAGE API ------------------------ #
 
@@ -38,8 +40,8 @@ closing_price_difference = last_day_closing_price - second_last_day_closing_pric
 closing_price_comparison = abs(closing_price_difference)
 closing_price_comparison_percentage = format(closing_price_comparison / second_last_day_closing_price * 100, ".2f")
 
-negative_comparison = 0.98 * second_last_day_closing_price
-positive_comparison = 1.02 * second_last_day_closing_price
+negative_comparison = 0.99 * second_last_day_closing_price
+positive_comparison = 1.01 * second_last_day_closing_price
 
 # ------------------- GETTING NEWS WITH NEWS API ------------------- #
 
@@ -76,7 +78,7 @@ if last_day_closing_price >= positive_comparison or last_day_closing_price <= ne
 if news_to_find:
     client = Client(test_TWILIO_ACCOUNT_SID, test_TWILIO_AUTH_TOKEN)
     message = client.messages.create(
-        body=f"{find_change_in_percentage()}\n{get_news()}",
+        body=f"\n{find_change_in_percentage()}\n\n{get_news()}",
         from_=test_TWILIO_PHONE_NUMBER,
-        to='+19134089007'
+        to=test_USER_PHONE_NUMBER
     )
